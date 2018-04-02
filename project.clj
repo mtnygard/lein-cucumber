@@ -1,9 +1,7 @@
 (defproject mtnygard/lein-cucumber "1.0.8-SNAPSHOT"
   :description "Run cucumber-jvm specifications with leiningen"
   :url https://github.com/mtnygard/lein-cucumber
-  :dependencies [[info.cukes/cucumber-clojure "1.2.5"]
-                 [leiningen-core "2.0.0"]
-                 [org.clojure/clojure "1.9.0"]]
+  :dependencies [[info.cukes/cucumber-clojure "1.2.5"]]
   :profiles {:cucumber {:dependencies [[commons-io "2.4"]]
                         :plugins [[mtnygard/lein-cucumber "1.0.8-SNAPSHOT"]]}
              :cuke-htmlrep [:cucumber {:cucumber
