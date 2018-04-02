@@ -37,21 +37,20 @@
 (defn cucumber
   "Runs Cucumber features in test/features with glue in test/features/step_definitions"
   [project & args]
-  (binding [leiningen.core.main/*exit-process?* true]
-    (let [runtime (gensym "runtime")
-          runtime-options (create-partial-runtime-options project args)
-          glue-paths (vec (.getGlue runtime-options))
-          feature-paths (vec (.getFeaturePaths runtime-options))
-          target-path (:target-path project)
-          cucumber-opts (:cucumber project)
-          project (project/merge-profiles project [:test])]
-      (eval-in-project
-       (-> project
-           (update-in [:dependencies] conj
-                      ['com.siili/lein-cucumber "1.0.7"]
-                      ['info.cukes/cucumber-clojure "1.2.4"])
-           (update-in [:source-paths] (partial apply conj) glue-paths))
-       `(do
-          (let [~runtime (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec (add-formatter args cucumber-opts)))]
-            (leiningen.core.main/exit (.exitStatus ~runtime))))
-       '(require 'leiningen.cucumber.util 'leiningen.core.main)))))
+  (let [runtime         (gensym "runtime")
+        runtime-options (create-partial-runtime-options project args)
+        glue-paths      (vec (.getGlue runtime-options))
+        feature-paths   (vec (.getFeaturePaths runtime-options))
+        target-path     (:target-path project)
+        cucumber-opts   (:cucumber project)
+        project         (project/merge-profiles project [:test])]
+    (eval-in-project
+     (-> project
+         (update-in [:dependencies] conj
+                    ['mtnygard/lein-cucumber "1.0.8-SNAPSHOT"]
+                    ['info.cukes/cucumber-clojure "1.2.5"])
+         (update-in [:source-paths] (partial apply conj) glue-paths))
+     `(do
+        (let [~runtime (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec (add-formatter args cucumber-opts)))]
+          (.exitStatus ~runtime)))
+     '(require 'leiningen.cucumber.util))))
