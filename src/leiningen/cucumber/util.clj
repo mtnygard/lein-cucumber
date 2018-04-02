@@ -1,9 +1,9 @@
 (ns leiningen.cucumber.util
-  (:use [clojure.java.io])
-  (:import [cucumber.runtime.clj Backend])
-  (:import [cucumber.runtime.io MultiLoader])
-  (:import [cucumber.runtime.model CucumberFeature])
-  (:import [cucumber.runtime RuntimeOptions CucumberException]))
+  (:require [clojure.java.io :refer :all])
+  (:import [cucumber.runtime.clj Backend]
+           [cucumber.runtime.io MultiLoader]
+           [cucumber.runtime.model CucumberFeature]
+           [cucumber.runtime RuntimeOptions CucumberException]))
 
 (defn- create-runtime-options [feature-paths glue-paths target-path args]
   (let [runtime-options (RuntimeOptions. (vec args))]
@@ -12,7 +12,6 @@
     (when (.. runtime-options (getGlue) (isEmpty))
       (.. runtime-options (getGlue) (addAll glue-paths)))
     runtime-options))
-
 
 (defn- create-runtime [runtime-options]
   (let [classloader (.getContextClassLoader (Thread/currentThread))

@@ -1,7 +1,7 @@
 (ns leiningen.cucumber
-  (:use [clojure.java.io])
-  (:use [leiningen.core.eval :only [eval-in-project]])
-  (:require [leiningen.core.project :as project])
+  (:require [clojure.java.io :refer :all]
+            [leiningen.core.eval :refer [eval-in-project]]
+            [leiningen.core.project :as project])
   (:import [cucumber.runtime RuntimeOptions]))
 
 (defn- configure-feature-paths [runtime-options feature-paths]
