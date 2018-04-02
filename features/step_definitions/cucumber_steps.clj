@@ -45,14 +45,20 @@
     (project/read "target/test_project/project.clj")))
 
 (defn- writing-to-result [f]
-  (let [out-writer (java.io.StringWriter.)]
-    (with-redefs [*out* out-writer]
-      (try
-        (f)
-        (finally (reset! result (.toString out-writer)))))))
+  (let [real-out System/out]
+    (with-open [out-stream (java.io.ByteArrayOutputStream.)
+                print-stream (java.io.PrintStream. out-stream)
+                print-writer (java.io.PrintWriter. out-stream)]
+      (with-redefs [*out* print-writer]
+        (try
+          (System/setOut print-stream)
+          (f)
+          (finally
+            (System/setOut real-out)
+            (reset! result (.toString out-stream))))))))
 
 (defn- assert-output-includes [text]
-  (assert (.contains @result text)))
+  (assert (.contains @result text) (str "expected output to contain " (pr-str text) " but was " (pr-str @result))))
 
 (Given #"^a lein-cucumber project without special configuration$" []
        (create-project (project-configuration)))
