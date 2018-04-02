@@ -37,8 +37,7 @@
 (defn cucumber
   "Runs Cucumber features in test/features with glue in test/features/step_definitions"
   [project & args]
-  (let [runtime         (gensym "runtime")
-        runtime-options (create-partial-runtime-options project args)
+  (let [runtime-options (create-partial-runtime-options project args)
         glue-paths      (vec (.getGlue runtime-options))
         feature-paths   (vec (.getFeaturePaths runtime-options))
         target-path     (:target-path project)
@@ -47,10 +46,10 @@
     (eval-in-project
      (-> project
          (update-in [:dependencies] conj
-                    ['mtnygard/lein-cucumber "1.0.8-SNAPSHOT"]
+                    ['mtnygard/lein-cucumber "1.0.8"]
                     ['info.cukes/cucumber-clojure "1.2.5"])
          (update-in [:source-paths] (partial apply conj) glue-paths))
      `(do
-        (let [~runtime (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec (add-formatter args cucumber-opts)))]
-          (.exitStatus ~runtime)))
+        (let [runtime# (leiningen.cucumber.util/run-cucumber! ~feature-paths ~glue-paths ~target-path ~(vec (add-formatter args cucumber-opts)))]
+          (.exitStatus runtime#)))
      '(require 'leiningen.cucumber.util))))

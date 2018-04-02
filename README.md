@@ -1,21 +1,17 @@
-[![Build Status](https://secure.travis-ci.org/siilisolutions/lein-cucumber.png)](http://travis-ci.org/siilisolutions/lein-cucumber)
+[![Build Status](https://secure.travis-ci.org/mtnygard/lein-cucumber.png)](http://travis-ci.org/mtnygard/lein-cucumber)
 
 # lein-cucumber
 
 This is a leiningen plugin for use with [cucumber-jvm](https://github.com/cucumber/cucumber-jvm).
 This is a fork of [lein-cucumber](http://github.com/nilswloka/lein-cucumber) with more up to date dependencies.
 
-[![Clojars Project](https://img.shields.io/clojars/v/com.siili/lein-cucumber.svg)](http://clojars.org/com.siili/lein-cucumber)
+[![Clojars Project](https://img.shields.io/clojars/v/mtnygard/lein-cucumber.svg)](http://clojars.org/mtnygard/lein-cucumber)
 
 ## Usage
 
-1. Add `[com.siili/lein-cucumber "1.0.7"]` to `:plugins` in your project.clj
+1. Add `[com.siili/lein-cucumber "1.0.8"]` to `:plugins` in your project.clj
 2. Run `lein deps` to fetch all dependencies.
 3. Run all Cucumber features with `lein cucumber`
-
-## Please note
-
-lein-cucumber requires Leiningen 2.
 
 ## Configuration
 
@@ -45,20 +41,14 @@ Formatted output
 
 See https://github.com/nilswloka/cucumber-jvm/tree/new-clojure-example/examples/clojure_cukes for an example project.
 
-## Note
-
-If you like original lein-cucumber, consider endorsing the original coder at: [coderwall](http://coderwall.com/nilswloka)
-
-[![endorse](http://api.coderwall.com/nilswloka/endorsecount.png)](http://coderwall.com/nilswloka)
-
-If you like my additions to the configuration and more up to date versions, consider endorsing me at: [coderwall](https://coderwall.com/Verneri)
-
-[![endorse](https://api.coderwall.com/Verneri/endorsecount.png)](https://coderwall.com/Verneri)
-
 ## Unlicense
 
 Originally written by Nils Wloka, 2012
-Additions made by Jeremy Anderson, 2015
-and Verneri Åberg 2015. For licensing information, see UNLICENSE.
+
+Additions made by Jeremy Anderson, 2015 and Verneri Åberg 2015.
+
+Brought up to CLojure 1.9 by Michael Nygard, 2018
+
+For licensing information, see UNLICENSE.
 
 Please have a look at http://unlicense.org if you plan to contribute.
