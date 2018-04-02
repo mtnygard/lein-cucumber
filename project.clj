@@ -4,7 +4,7 @@
   :dependencies [[org.clojure/clojure "1.9.0" :scope "provided"]
                  [info.cukes/cucumber-clojure "1.2.5"]]
   :profiles {:cucumber     {:dependencies [[commons-io "2.4"]]
-                            :plugins      [[mtnygard/lein-cucumber "1.0.8-SNAPSHOT"]]}
+                            :plugins      [[mtnygard/lein-cucumber "1.0.9-SNAPSHOT"]]}
              :cuke-htmlrep [:cucumber {:cucumber
                                        {:formatter {:type :html
                                                     :path "target/report"}}}]}
