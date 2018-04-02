@@ -19,7 +19,8 @@
 
 (defn- project-configuration
   ([] '(defproject test-project "0.1.0"
-         :description "A test project"))
+         :description "A test project"
+         :dependencies [[org.clojure/clojure "1.9.0"]]))
   ([parameters]
      (seq (concat (project-configuration) parameters))))
 
