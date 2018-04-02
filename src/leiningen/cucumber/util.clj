@@ -7,16 +7,16 @@
 
 (defn- create-runtime-options [feature-paths glue-paths target-path args]
   (let [runtime-options (RuntimeOptions. (vec args))]
-    (when (.. runtime-options (getFeaturePaths) (isEmpty))
-      (.. runtime-options (getFeaturePaths) (addAll feature-paths)))
-    (when (.. runtime-options (getGlue) (isEmpty))
-      (.. runtime-options (getGlue) (addAll glue-paths)))
+    (when (.. runtime-options getFeaturePaths isEmpty)
+      (.. runtime-options getFeaturePaths (addAll feature-paths)))
+    (when (.. runtime-options getGlue isEmpty)
+      (.. runtime-options getGlue (addAll glue-paths)))
     runtime-options))
 
 (defn- create-runtime [runtime-options]
-  (let [classloader (.getContextClassLoader (Thread/currentThread))
+  (let [classloader     (.getContextClassLoader (Thread/currentThread))
         resource-loader (MultiLoader. classloader)
-        backend (Backend. resource-loader)]
+        backend         (Backend. resource-loader)]
     (cucumber.runtime.Runtime. resource-loader classloader [backend] runtime-options)))
 
 (defn run-cucumber! [feature-paths glue-paths target-path args]
