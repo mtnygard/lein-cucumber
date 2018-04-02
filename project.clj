@@ -1,4 +1,4 @@
-(defproject mtnygard/lein-cucumber "1.0.8"
+(defproject mtnygard/lein-cucumber "1.0.9-SNAPSHOT"
   :description "Run cucumber-jvm specifications with leiningen"
   :url https://github.com/mtnygard/lein-cucumber
   :dependencies [[org.clojure/clojure "1.9.0" :scope "provided"]
